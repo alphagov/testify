@@ -11,7 +11,6 @@ RUN touch /var/log/mongodb/mongodb.log
 RUN chown mongodb:mongodb /var/log/mongodb/mongodb.log
 RUN mongod --config mongodb/mongo.conf
 RUN sleep 10
-RUN netstat-nat -p tcp
-RUN netstat-nat -p udp
 RUN lsof -i -a -c mongodb
+RUN lsof -i tcp; lsof -i udp;
 RUN mongoimport --verbose --db zips --collection zips --type json --file mongodb/zips.json
