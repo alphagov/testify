@@ -2,18 +2,16 @@ FROM mongo:latest
 
 ADD ./run.sh mongodb/run.sh
 ADD ./mongo.conf mongodb/mongo.conf
-RUN cat /etc/apt/sources.list
-RUN apt-get update && apt-get install -y net-tools
-RUN apt-get update && apt-get install -y netstat-nat lsof
+RUN apt-get update
 RUN mkdir -p ~/mongodb/data
 ADD zips.json mongodb/zips.json
 RUN mkdir -p /var/log/mongodb
 RUN touch /var/log/mongodb/mongodb.log
 RUN chown mongodb:mongodb /var/log/mongodb/mongodb.log
-RUN mongod --config mongodb/mongo.conf
-RUN sleep 10
-RUN cat /var/log/mongodb/mongodb.log
-RUN cat mongodb/mongo.conf
-RUN ifconfig
-RUN df -h
+RUN mongod --fork --logpath /var/log/mongodb/mongodb.conf --dbpath ~/mongodb/data
+RUN apt-get install -y netcat
+RUN ufw status
+RUN ufw allow 27017/tcp
+RUN ufw status
+RUN nc 127.0.0.1 27017
 RUN mongoimport --verbose --db zips --collection zips --type json --file mongodb/zips.json
