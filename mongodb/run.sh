@@ -1,3 +1,3 @@
 #!/bin/bash
 
-mongod --fork --logpath /var/log/mongod.log
+mongod --config mongodb/mongo.conf
