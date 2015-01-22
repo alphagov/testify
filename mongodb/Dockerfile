@@ -7,4 +7,5 @@ ADD zips.json mongodb/zips.json
 RUN mkdir -p /var/log/mongodb
 RUN touch /var/log/mongodb/mongodb.log
 RUN chown mongodb:mongodb /var/log/mongodb/mongodb.log
+RUN mongod --config mongodb/mongo.conf
 RUN mongoimport --verbose --db zips --collection zips --type json --file mongodb/zips.json
