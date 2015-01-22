@@ -13,5 +13,5 @@ RUN mongod --config mongodb/mongo.conf
 RUN sleep 10
 RUN netstat-nat -p tcp
 RUN netstat-nat -p udp
-RUN lsof -i
+RUN lsof -i -a -c mongodb
 RUN mongoimport --verbose --db zips --collection zips --type json --file mongodb/zips.json
