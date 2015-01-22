@@ -1,4 +1,5 @@
-sudo apt-get install docker.io -y
+#!/bin/bash
+
 mkdir -p ~/mongodb/data
-wget -O ~/mongodb/data http://media.mongodb.org/zips.json
+wget --quiet -O ~/mongodb/data/zips.json http://media.mongodb.org/zips.json
 docker build mongodb/
