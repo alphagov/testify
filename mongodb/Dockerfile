@@ -13,6 +13,7 @@ RUN chown mongodb:mongodb /var/log/mongodb/mongodb.log
 RUN mongod --config mongodb/mongo.conf
 RUN sleep 10
 RUN cat /var/log/mongodb/mongodb.log
+RUN cat mongodb/mongo.conf
 RUN ifconfig
 RUN df -h
 RUN mongoimport --verbose --db zips --collection zips --type json --file mongodb/zips.json
