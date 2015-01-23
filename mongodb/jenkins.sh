@@ -7,5 +7,4 @@ docker pull ubuntu
 docker rm -f mongodb ubuntu
 docker run --name mongodb -d mongo
 docker run --name ubuntu -d ubuntu
-docker exec -it mongodb -d mongoimport --verbose --db zips --collection zips --type json --file mongodb/zips.json
 docker attach mongodb 'mongoimport --verbose --db zips --collection zips --type json mongodb/zips.json'
