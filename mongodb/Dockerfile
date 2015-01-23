@@ -13,5 +13,4 @@ RUN apt-get install -y netcat
 RUN ufw status
 RUN ufw allow 27017/tcp
 RUN ufw status
-RUN nc 127.0.0.1 27017
 RUN mongoimport --verbose --db zips --collection zips --type json --file mongodb/zips.json
