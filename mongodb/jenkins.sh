@@ -1,9 +1,12 @@
 #!/bin/bash
 
 docker --version
-echo "Making MongoDB data directory..."
-mkdir -p $(pwd)/data
-sudo chown -R $(whoami): $(pwd)/data
+if [ ! -d $(pwd)/data ]; then
+  echo "Making MongoDB data directory..."
+  mkdir -p $(pwd)/data
+  sudo chown -R $(whoami): $(pwd)/data
+fi
+
 echo "Downloading MongoDB data..."
 wget --quiet -O $(pwd)/data/zips.json http://media.mongodb.org/zips.json
 if ls -lah data | grep tar.gz > /dev/null 2>&1; then
