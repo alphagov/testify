@@ -6,9 +6,8 @@ mkdir -p $(pwd)/data
 sudo chown -R $(whoami): $(pwd)/data
 echo "Downloading MongoDB data..."
 wget --quiet -O $(pwd)/data/zips.json http://media.mongodb.org/zips.json
-if $(file *.gz | grep compressed)
+if ls -lah data | grep tar.gz > /dev/null 2>&1; then
   echo "Backup is tarballed. Extracting..."
-  tar -zxvf *.gz
 fi
 echo "Pulling Docker image: MongoDB..."
 docker pull mongo > /dev/null 2>&1
